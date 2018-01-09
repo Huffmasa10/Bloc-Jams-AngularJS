@@ -31,10 +31,25 @@
          ]
       };
 
+<<<<<<< HEAD
       Fixtures.getAlbum =function() {
           return albumPicasso;
       };
 
+=======
+      Fixtures.getAlbum = function() {
+          return albumPicasso;
+      };
+
+      Fixtures.getCollection = function(numberOfAlbums) {
+          var albums= [];
+          for(var i=0; i<numberOfAlbums; i++) {
+            albums.push(angular.copy(albumPicasso));
+          };
+          return albums;
+      };
+
+>>>>>>> Assignment-6
       return Fixtures;
   }
 
