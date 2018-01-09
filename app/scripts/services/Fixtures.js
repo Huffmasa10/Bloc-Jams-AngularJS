@@ -31,12 +31,6 @@
          ]
       };
 
-<<<<<<< HEAD
-      Fixtures.getAlbum =function() {
-          return albumPicasso;
-      };
-
-=======
       Fixtures.getAlbum = function() {
           return albumPicasso;
       };
@@ -49,7 +43,6 @@
           return albums;
       };
 
->>>>>>> Assignment-6
       return Fixtures;
   }
 
