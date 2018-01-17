@@ -21,14 +21,23 @@
     var currentBuzzObject = null;
 
     /**
+    *@function stopSong
+    *@desc stops playing selected song and sets playing property to null
+    *@param {Object} song
+    */
+    var stopSong = function(song) {
+      currentBuzzObject.stop();
+      SongPlayer.currentSong.playing = null;
+    };
+
+    /**
     * @function setSong
     * @desc Stops currently playing song and loads new audio file as currentBuzzObject
     * @param {Object} song
     */
     var setSong = function(song) {
         if (currentBuzzObject) {
-            currentBuzzObject.stop();
-            SongPlayer.currentSong.playing = null;
+            stopSong();
           }
 
           currentBuzzObject = new buzz.sound(song.audioUrl, {
@@ -95,19 +104,34 @@
 
     /**
     *@function SongPlayer.previous
-    *@desc plays previous song in songs list
+    *@desc plays previous song in songs array and stops playing of currentSongIndex is at 0
     */
     SongPlayer.previous = function() {
       var currentSongIndex = getSongIndex(SongPlayer.currentSong);
       currentSongIndex--;
       if(currentSongIndex < 0) {
-       currentBuzzObject.stop();
-       SongPlayer.currentSong.playing = null;
+          stopSong();
        } else {
         var song = currentAlbum.songs[currentSongIndex];
         setSong(song);
         playSong(song);
       }
+     };
+
+     /**
+     *@function SongPlayer.next
+     *@desc plays next song in songs array, and stops playing if last song
+     */
+     SongPlayer.next = function() {
+       var currentSongIndex = getSongIndex(SongPlayer.currentSong);
+       currentSongIndex++;
+       if(currentSongIndex > currentAlbum.songs.length - 1) {
+          stopSong();
+       } else {
+         var newSong = currentAlbum.songs[currentSongIndex];
+         setSong(newSong);
+         playSong(newSong);
+       }
      };
 
     return SongPlayer;
