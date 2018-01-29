@@ -5,7 +5,7 @@
     * @type {Object}
     */
 
-    var SongPlayer = {};
+    
 
     var currentAlbum = Fixtures.getAlbum();
 
